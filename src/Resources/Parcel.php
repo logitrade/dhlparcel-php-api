@@ -4,6 +4,9 @@ namespace Mvdnbrk\DhlParcel\Resources;
 
 class Parcel extends BaseResource
 {
+     /** @var string */
+    public $product;
+
     /** @var string */
     public $reference_identifier;
 
@@ -176,6 +179,11 @@ class Parcel extends BaseResource
         $this->reference_identifier = $value;
     }
 
+    public function setProduct(string $value): void
+    {
+        $this->product = $value;
+    }
+
     public function toArray(): array
     {
         return collect([
@@ -186,6 +194,9 @@ class Parcel extends BaseResource
         ])
             ->when(! is_null($this->reference_identifier), function ($collection) {
                 return $collection->put('orderReference', (string) $this->reference_identifier);
+            })
+               ->when(! is_null($this->product), function ($collection) {
+                return $collection->put('product', (string) $this->product);
             })
             ->all();
     }
