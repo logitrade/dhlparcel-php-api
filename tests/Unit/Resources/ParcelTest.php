@@ -308,6 +308,18 @@ class ParcelTest extends TestCase
     }
 
     /** @test */
+    public function it_can_set_the_add_return_label_option()
+    {
+        $parcel = new Parcel();
+
+        $this->assertNull($parcel->options->add_return_label);
+
+        $parcel->addReturnLabel();
+
+        $this->assertTrue($parcel->options->add_return_label);
+    }
+
+    /** @test */
     public function to_array()
     {
         $parcel = new Parcel;
