@@ -92,6 +92,13 @@ class Parcel extends BaseResource
         return $this;
     }
 
+    public function addReturnLabel(): self
+    {
+        $this->options->addReturnLabel();
+
+        return $this;
+    }
+
     /**
      * Set the shipment options for this parcel.
      *

@@ -33,6 +33,9 @@ class ShipmentOptions extends BaseResource
     /** @var int|float */
     protected $insured;
 
+    /** @var bool */
+    public $add_return_label;
+
     public function __construct(array $attributes = [])
     {
         $this->setDefaultOptions();
@@ -104,6 +107,11 @@ class ShipmentOptions extends BaseResource
         $this->insured = $value;
     }
 
+    public function addReturnLabel(): void
+    {
+        $this->add_return_label = true;
+    }
+
     public function toArray(): array
     {
         return collect()
@@ -154,6 +162,11 @@ class ShipmentOptions extends BaseResource
                 return $collection->push([
                     'key' => 'INS',
                     'input' => $this->insured,
+                ]);
+            })
+            ->when($this->add_return_label, function ($collection) {
+                return $collection->push([
+                    'key' => 'ADD_RETURN_LABEL',
                 ]);
             })
             ->all();
