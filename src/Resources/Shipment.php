@@ -18,6 +18,8 @@ class Shipment extends BaseResource
     /** @var \Tightenco\Collect\Support\Collection */
     public $pieces;
 
+    public Shipment $returnShipment;
+
     public function __construct(array $attributes = [])
     {
         $this->pieces = new Collection;
